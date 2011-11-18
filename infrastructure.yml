@@ -1,0 +1,22 @@
+#
+# Spiceweasel Descriptor for our Infrastructure
+#
+# Run via: spiceweasel infrastructure.yml
+#
+cookbooks:
+- apt:
+- build-essential:
+- chef-client:
+- java:
+- jpackage:
+- ntp:
+- sudo:
+- users:
+
+data bags:
+- users:
+  - *
+
+roles:
+- base:
+
