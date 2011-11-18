@@ -2,5 +2,6 @@
 *.iml
 *.ipr
 *.iws
+data_bags/users/*.json
 setup.sh
 
