@@ -8,11 +8,10 @@ end
 def find_key(env_key,key_name)
   key_location_env_key = "#{env_key}_LOCATION"
   key_dir_env_key = "#{env_key}_DIR"
-  key_filename = ENV[key_location_env_key] || "#{ENV[dir_key] || File.dirname(__FILE__)}/#{key_name}"
+  key_filename = ENV[key_location_env_key] || "#{ENV[key_dir_env_key] || File.dirname(__FILE__)}/#{key_name}"
   raise "Key does not exist at #{key_filename}. Specify the key using environment variable #{key_location_env_key} or specify the directory using environment variable #{key_dir_env_key} and add a key named #{key_name} in directory" unless File.exist?(key_filename)
   key_filename
 end
-
 
 def chef_user()
   env_get('OPSCODE_USER')
