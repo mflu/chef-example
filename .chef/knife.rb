@@ -17,7 +17,7 @@ def chef_user()
 end
 
 def chef_organisation()
-  env_get('OPSCODE_ORGNAME','realityforge')
+  env_get('OPSCODE_ORGNAME')
 end
 
 def chef_validation_client_name()
