@@ -1,6 +1,6 @@
 .rake_test_cache
-chef-repo.iml
-chef-repo.ipr
-chef-repo.iws
+*.iml
+*.ipr
+*.iws
 setup.sh
 
