@@ -5,9 +5,11 @@ def env_get(key,default = nil)
   value
 end
 
-def find_key(key_key,dir_key,key_name)
-  key_filename = ENV[key_key] || "#{ENV[dir_key] || File.dirname(__FILE__)}/#{key_name}"
-  raise "Key does not exist at #{key_filename} - add the key or set the #{dir_key} environment variable" unless File.exist?(key_filename)
+def find_key(env_key,key_name)
+  key_location_env_key = "#{env_key}_LOCATION"
+  key_dir_env_key = "#{env_key}_DIR"
+  key_filename = ENV[key_location_env_key] || "#{ENV[dir_key] || File.dirname(__FILE__)}/#{key_name}"
+  raise "Key does not exist at #{key_filename}. Specify the key using environment variable #{key_location_env_key} or specify the directory using environment variable #{key_dir_env_key} and add a key named #{key_name} in directory" unless File.exist?(key_filename)
   key_filename
 end
 
@@ -27,9 +29,9 @@ end
 log_level                :info
 log_location             STDOUT
 node_name                chef_user()
-client_key               find_key('CHEF_USER_KEY_LOCATION','CHEF_USER_KEY_DIR',"#{chef_user()}.pem")
+client_key               find_key('CHEF_USER_KEY',"#{chef_user()}.pem")
 validation_client_name   chef_validation_client_name()
-validation_key           find_key('CHEF_ORG_KEY_LOCATION','CHEF_ORG_KEY_DIR',"#{chef_validation_client_name()}.pem")
+validation_key           find_key('CHEF_ORG_KEY',"#{chef_validation_client_name()}.pem")
 chef_server_url          "https://api.opscode.com/organizations/#{chef_organisation()}"
 cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
@@ -45,9 +47,9 @@ knife[:aws_access_key_id] = env_get('AWS_ACCESS_KEY_ID')
 knife[:aws_secret_access_key] = env_get('AWS_SECRET_ACCESS_KEY')
 
 # Amazon EC2 SSH access keys
-knife[:identity_file] = find_key('CHEF_USER_KEY_LOCATION','CHEF_USER_KEY_DIR',"#{chef_user()}-ec2.pem")
+knife[:identity_file] = find_key('CHEF_USER_KEY',"#{chef_user()}-ec2.pem")
 knife[:aws_ssh_key_id] = env_get('AWS_SSH_KEY_ID')
 
 # Amazon EC2 Region/Availability zone
-knife[:availability_zone] = "eu-west-1a"
-knife[:region] = "eu-west-1"
+knife[:region] = env_get('AWS_REGION',"eu-west-1")
+knife[:availability_zone] = env_get('AWS_AVAILABILITY_ZONE',"eu-west-1a")
