@@ -50,5 +50,5 @@ knife[:identity_file] = find_key('CHEF_USER_KEY',"#{chef_user()}-ec2.pem")
 knife[:aws_ssh_key_id] = env_get('AWS_SSH_KEY_ID')
 
 # Amazon EC2 Region/Availability zone
-knife[:region] = env_get('AWS_REGION',"eu-west-1")
-knife[:availability_zone] = env_get('AWS_AVAILABILITY_ZONE',"eu-west-1a")
+knife[:availability_zone] = env_get('AWS_AVAILABILITY_ZONE')
+knife[:region] = env_get('AWS_REGION')
