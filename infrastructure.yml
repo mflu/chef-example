@@ -8,7 +8,6 @@ cookbooks:
 - build-essential:
 - chef-client:
 - java:
-- jpackage:
 - ntp:
 - sudo:
 - users:
