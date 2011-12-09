@@ -27,14 +27,14 @@ MAX_UPDATES_PER_SECOND = 1000
 # the files quickly but at the risk of slowing I/O down considerably for a while.
 MAX_CREATES_PER_MINUTE = <%= node[:graphite][:carbon][:max_creates_per_minute] %>
 
-LINE_RECEIVER_INTERFACE = <%= @line_receiver_interface %>
-LINE_RECEIVER_PORT = 2003
+LINE_RECEIVER_INTERFACE = <%= node[:graphite][:carbon][:line_receiver][:interface] %>
+LINE_RECEIVER_PORT = <%= node[:graphite][:carbon][:line_receiver][:port] %>
 
-PICKLE_RECEIVER_INTERFACE = <%= @pickle_receiver_interface %>
-PICKLE_RECEIVER_PORT = 2004
+PICKLE_RECEIVER_INTERFACE = <%= node[:graphite][:carbon][:pickle_receiver][:interface] %>
+PICKLE_RECEIVER_PORT = <%= node[:graphite][:carbon][:pickle_receiver][:port] %>
 
-CACHE_QUERY_INTERFACE = <%= @cache_query_interface %>
-CACHE_QUERY_PORT = 7002
+CACHE_QUERY_INTERFACE = <%= node[:graphite][:carbon][:cache_query][:interface] %>
+CACHE_QUERY_PORT = <%= node[:graphite][:carbon][:cache_query][:port] %>
 
 # By default, carbon-cache will log every whisper update. This can be excessive and
 # degrade performance if logging on the same volume as the whisper data is stored.

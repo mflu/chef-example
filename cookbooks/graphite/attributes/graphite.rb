@@ -10,8 +10,11 @@ default[:graphite][:graphite_web][:uri] = "http://launchpadlibrarian.net/8211230
 default[:graphite][:graphite_web][:checksum] = "cc78bab7fb26b"
 
 default[:graphite][:carbon][:max_creates_per_minute] = 50
-default[:graphite][:carbon][:line_receiver_interface] =   "127.0.0.1"
-default[:graphite][:carbon][:pickle_receiver_interface] = "127.0.0.1"
-default[:graphite][:carbon][:cache_query_interface] =     "127.0.0.1"
+default[:graphite][:carbon][:line_receiver][:interface] =   "127.0.0.1"
+default[:graphite][:carbon][:line_receiver][:port] = 2003
+default[:graphite][:carbon][:pickle_receiver][:interface] = "127.0.0.1"
+default[:graphite][:carbon][:pickle_receiver][:port] = 2004
+default[:graphite][:carbon][:cache_query][:interface] = "127.0.0.1"
+default[:graphite][:carbon][:cache_query][:port] = 7002
 
 default[:graphite][:password] = "change_me"
