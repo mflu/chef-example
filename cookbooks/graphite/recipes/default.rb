@@ -22,3 +22,9 @@ include_recipe "python"
 include_recipe "graphite::whisper"
 include_recipe "graphite::carbon"
 include_recipe "graphite::web"
+
+bash "set permissions" do
+  code <<-EOH
+    chown #{node[:apache][:user]}:#{node[:apache][:group]} -R /opt/graphite
+  EOH
+end
