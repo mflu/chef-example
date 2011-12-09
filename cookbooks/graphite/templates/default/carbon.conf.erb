@@ -25,7 +25,7 @@ MAX_UPDATES_PER_SECOND = 1000
 # database files to all get created and thus longer until the data becomes usable.
 # Setting this value high (like "inf" for infinity) will cause graphite to create
 # the files quickly but at the risk of slowing I/O down considerably for a while.
-MAX_CREATES_PER_MINUTE = inf
+MAX_CREATES_PER_MINUTE = <%= node[:graphite][:carbon][:max_creates_per_minute] %>
 
 LINE_RECEIVER_INTERFACE = <%= @line_receiver_interface %>
 LINE_RECEIVER_PORT = 2003
