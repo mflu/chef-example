@@ -12,7 +12,7 @@ default_attributes(
   :authorization => {
     :sudo => {
       :groups => ["sysadmin"],
-      :users => ["ubuntu"],
+      :users => ["ubuntu","chef"],
       :passwordless => true
     }
   }
