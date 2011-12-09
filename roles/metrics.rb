@@ -11,5 +11,6 @@ run_list(
   "recipe[collectd_plugins::interface]",
   "recipe[collectd_plugins::memory]",
   "recipe[collectd_plugins::swap]",
+  "recipe[jmxtrans]",
   "recipe[graphite]"
 )
