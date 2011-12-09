@@ -20,8 +20,8 @@ execute "install carbon" do
 end
 
 template "/opt/graphite/conf/carbon.conf" do
-  owner "www-data"
-  group "www-data"
+  owner node[:apache][:user]
+  group node[:apache][:group]
   variables( :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
              :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
              :cache_query_interface => node[:graphite][:carbon][:cache_query_interface] )
@@ -29,20 +29,20 @@ template "/opt/graphite/conf/carbon.conf" do
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
-  owner "www-data"
-  group "www-data"
+  owner node[:apache][:user]
+  group node[:apache][:group]
 end
 
 template "/etc/init/carbon-cache.conf" do
   source "carbon-cache.conf.erb"
-  owner "www-data"
-  group "www-data"
+  owner node[:apache][:user]
+  group node[:apache][:group]
   notifies :restart, "service[carbon-cache]"
 end
 
 directory "/opt/graphite/lib/twisted/plugins/" do
-  owner "www-data"
-  group "www-data"
+  owner node[:apache][:user]
+  group node[:apache][:group]
 end
 
 service "carbon-cache" do
