@@ -2,6 +2,7 @@ name "metrics"
 description "Node to measure metrics across system"
 run_list(
   "role[base]",
+  "recipe[graphite]",
   "recipe[collectd::server]",
   #"recipe[collectd::client]",
   "recipe[collectd_plugins::syslog]",
@@ -11,8 +12,7 @@ run_list(
   "recipe[collectd_plugins::interface]",
   "recipe[collectd_plugins::memory]",
   "recipe[collectd_plugins::swap]",
-  "recipe[jmxtrans]",
-  "recipe[graphite]"
+  "recipe[jmxtrans]"
 )
 override_attributes(
   :graphite => {
