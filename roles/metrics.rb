@@ -14,3 +14,10 @@ run_list(
   "recipe[jmxtrans]",
   "recipe[graphite]"
 )
+override_attributes(
+  :graphite => {
+    :carbon => {
+      :line_receiver => { :interface => "0.0.0.0" }
+    }
+  }
+)
